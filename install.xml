@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='file:/media/stas/Elements/stas/works/oc/ocmod.xsd'>
+    <name>ocfilter:extensions add tegs</name>
+    <code>ocfilter_add_tegs</code>
+    <version>1.0.1</version>
+    <author>Stanislav Stecenko</author>
+    <link>https://www.facebook.com/stanislav.stecenko</link>
+    
+    <file path="catalog/controller/product/category.php">
+        <operation>
+            <search><![CDATA[$data['header'] = $this->load->controller('common/header');]]></search>
+            <add position="after"><![CDATA[
+        //start ssv_ocfilter_add_teg
+        $data['ocfilter_add_teg'] = $this->load->controller('module/ocfilter_add_tegs');
+        //end ssv_ocfilter_add_teg
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="catalog/view/theme/default/template/product/category.tpl">
+        <operation>
+            <search><![CDATA[<?php if ($categories) { ?>]]></search>
+            <add position="before"><![CDATA[
+        <!--start ssv_ocfilter_add_teg-->
+        <?php echo $ocfilter_add_teg; ?>
+        <!--end ssv_ocfilter_add_teg-->
+]]></add>
+        </operation>
+    </file>
+    
+</modification>
